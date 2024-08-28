@@ -1,0 +1,62 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  background: #000000;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  color: #edefee;
+  text-decoration: none;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.view
+{
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  background-color: #eee;
+  padding: 0px 20px;
+  justify-content: center;
+  align-items: center; /* Center items horizontally */
+}
+
+.div-row {
+  width: 50%;
+  margin-bottom: 20px; /* Space between the rows */
+  padding: 10px; /* Padding inside each row */
+  background-color: #eee; /* Background color for each row */
+  border: 1px solid #eee; /* Optional border for each row */
+}
+
+.div-row:last-child {
+  margin-bottom: 0; /* Remove bottom margin for the last row */
+}
+
+.footer
+{
+  padding: 10px;
+  display: flex;
+  background: #000000;
+  justify-content: center;
+}
+
+.footer p
+{
+  font-size: 15px;
+  color: white;
+}
