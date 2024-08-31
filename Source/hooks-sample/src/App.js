@@ -1,6 +1,15 @@
 import { useState } from 'react'; 
 import './App.css';
 
+/*
+4 Important Rules of Hooks:
+
+1. Only call hooks from a React component function
+2. Only call hooks at the top level
+3. Call multiple state or effect hooks
+4. Make multiple hook calls in the same sequence   
+*/
+
 function App() {
   const [form, setForm] = useState({ 
     firstName: 'Luke', 
