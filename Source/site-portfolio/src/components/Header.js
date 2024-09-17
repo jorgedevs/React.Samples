@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin, faMedium, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
@@ -28,6 +28,7 @@ const socials = [
 ];
 
 const Header = () => {
+
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -65,7 +66,7 @@ const Header = () => {
           <nav>
             <HStack spacing={5}>
               {socials.map((social, index) => (
-                <a href={social.url}>
+                <a href={social.url} key={index}>
                   <FontAwesomeIcon icon={social.icon} size="2x" />
                 </a>
               ))}
