@@ -19,7 +19,7 @@ import {useAlertContext} from "../context/alertContext";
 
 const LandingSection = () => {
   const {isLoading, response, submit} = useSubmit();
-  const { onOpen, showAlert } = useAlertContext();
+  const { onOpen } = useAlertContext();
 
   const formik = useFormik({
     initialValues: {
