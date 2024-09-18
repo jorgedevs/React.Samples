@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin, faMedium, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack } from "@chakra-ui/react";
+import { useState, useRef, useEffect } from "react";
 
 const socials = [
   {
@@ -29,6 +30,31 @@ const socials = [
 
 const Header = () => {
 
+  const [isVisible, setIsVisible] = useState(true);  // Controls visibility of the header
+  const lastScrollY = useRef(0);  // Tracks the last scroll position
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    
+    console.log(currentScrollY);
+
+    if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+    
+    lastScrollY.current = currentScrollY;
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -46,7 +72,7 @@ const Header = () => {
       top={0}
       left={0}
       right={0}
-      translateY={0}
+      transform={isVisible ? "translateY(0)" : "translateY(-100%)"}
       transitionProperty="transform"
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
