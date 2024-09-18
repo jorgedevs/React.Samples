@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import { Formik, useFormik, validateYupSchema } from "formik";
+import React from "react";
+import { useFormik } from "formik";
 import {
   Box,
   Button,
@@ -44,10 +44,17 @@ const LandingSection = () => {
         .max(500, 'Must be 500 characters or less')
         .required("Required"),
     }),
-    onSubmit: (values) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-      }, 400);
+    onSubmit: async (values) => {
+      await submit("/api/submit", values);
+
+      if (response.type === "success")  {
+        onOpen("success", response.message)
+        formik.resetForm();
+      }
+      else
+      {
+        onOpen("error", response.message)
+      }
     },
   });
 
@@ -99,15 +106,23 @@ const LandingSection = () => {
                 ) : null}
               </FormControl>
 
-              <FormControl>
+              <FormControl isInvalid={formik.touched.type && formik.errors.type}>
                 <FormLabel htmlFor="type">Type of enquiry</FormLabel>
                 <Select 
                   id="type" 
-                  name="type">
+                  name="type"
+                  value={formik.values.type}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  >
+                  <option style={{ color: "black" }} value="selectType">Select Type</option>
                   <option style={{ color: "black" }} value="hireMe">Freelance project proposal</option>
                   <option style={{ color: "black" }} value="openSource">Open source consultancy session</option>
                   <option style={{ color: "black" }} value="other">Other</option>
                 </Select>
+                {formik.touched.type && formik.errors.type ? (
+                  <FormErrorMessage>{formik.errors.type}</FormErrorMessage>
+                ) : null}
               </FormControl>
 
               <FormControl isInvalid={formik.touched.comment && formik.errors.comment}>
