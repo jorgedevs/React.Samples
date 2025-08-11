@@ -6,7 +6,7 @@ export default function App() {
   const [count, setCount] = useState(0);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to React Native 🚀</Text>
+      <Text style={styles.title}>Welcome to React Native! 🚀</Text>
       <Text style={styles.counter}>You tapped {count} times</Text>
       <Button title="Tap me!" onPress={() => setCount(count + 1)} />
       <StatusBar style="auto" />
